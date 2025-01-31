@@ -19,7 +19,10 @@
   "homepage": "https://github.com/one-up-project/oneup_ag#readme",
   "type": "module",
   "dependencies": {
+    "@apollo/datasource-rest": "^6.4.1",
     "@apollo/server": "^4.11.3",
-    "graphql": "^16.10.0"
+    "apollo-datasource-rest": "^3.7.0",
+    "graphql": "^16.10.0",
+    "undici": "^7.3.0"
   }
 }
