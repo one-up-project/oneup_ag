@@ -13,6 +13,13 @@ export class StoreAPI extends RESTDataSource {
 
   // Método POST corregido
   async createRandomBag(input) {
-    return this.post("randomBags", input); // Pasamos input directamente
+    return this.post("randomBags", {
+      body: input, // Pasamos el cuerpo de la solicitud
+      headers: {
+        "Content-Type": "application/json", // Asegúrate de que este header esté presente
+      },
+    });
   }
 }
+
+export default StoreAPI;
