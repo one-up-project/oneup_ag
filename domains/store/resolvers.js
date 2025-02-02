@@ -6,8 +6,8 @@ export const resolvers = {
     },
     Mutation: {
       createRandomBag: async (_, { input }, { dataSources }) => {
-        return await dataSources.storeAPI.createRandomBag(input);
-      },
+          return await dataSources.storeAPI.createRandomBag(input);
+        },
     },
   };
   

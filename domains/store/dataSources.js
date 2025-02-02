@@ -3,20 +3,20 @@ import { RESTDataSource } from "@apollo/datasource-rest";
 export class StoreAPI extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = "http://localhost:5000/api/store/"; // URL de tu backend
+    this.baseURL = "http://localhost:5000/api/store/"; // URL del backend
   }
 
-  // Método GET (correcto)
+  // GET 
   async getRandomBags() {
     return this.get("randomBags");
   }
 
-  // Método POST corregido
+  //POST 
   async createRandomBag(input) {
     return this.post("randomBags", {
-      body: input, // Pasamos el cuerpo de la solicitud
+      body: input, 
       headers: {
-        "Content-Type": "application/json", // Asegúrate de que este header esté presente
+        "Content-Type": "application/json", 
       },
     });
   }
