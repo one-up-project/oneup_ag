@@ -1,6 +1,6 @@
-import { gql } from "graphql-tag";
+//import { gql } from "graphql-tag";
 
-export const typeDefs = gql`
+export const typeDefs = `#graphql
   type RandomBag {
     random_bag_id: Int!
     store_id: Int!
