@@ -9,12 +9,11 @@ export class StoreAPI extends RESTDataSource {
   // GET 
   async getRandomBags() {
     try {
-      console.log("Ejecutando getRandomBags desde StoreAPI"); // Log de depuración
-      const data = await this.get("randomBags"); // Obtener datos correctamente
-      console.log("Datos obtenidos en getRandomBags:", data); // Log para depuración
+
+      const data = await this.get("randomBags"); 
+      console.log("Datos obtenidos en getRandomBags:", data); 
       return data;
     } catch (error) {
-      console.error("Error en getRandomBags:", error.message);
       throw new Error("No se pudieron obtener las random bags");
     }
   }
