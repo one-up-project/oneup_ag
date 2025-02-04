@@ -29,5 +29,6 @@ export const typeDefs = `#graphql
 
   type Mutation {
     createRandomBag(input: RandomBagInput!): RandomBag
+    deleteRandomBag(random_bag_id: Int!): RandomBag
   }
 `;
