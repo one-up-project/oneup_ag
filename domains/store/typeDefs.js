@@ -29,5 +29,6 @@ export const typeDefs = gql`
 
   type Mutation {
     createRandomBag(input: RandomBagInput!): RandomBag
+    deleteRandomBag(random_bag_id: Int!): RandomBag
   }
 `;
