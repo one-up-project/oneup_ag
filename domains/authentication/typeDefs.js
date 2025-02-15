@@ -11,6 +11,8 @@ export const typeDefs = `#graphql
     password: String!
     phone: String!
     rol: String!
+    lat: Float
+    long: Float
   }
 
   input UserInput { 
@@ -19,6 +21,8 @@ export const typeDefs = `#graphql
     password: String!
     phone: String!
     rol: String!
+    lat: Float
+    long: Float
   }
 
   input UserLogin { 
