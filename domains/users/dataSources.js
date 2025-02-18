@@ -16,6 +16,11 @@ export class Search_ms extends RESTDataSource {
   async getStoresByName(name, category) {
     return this.get(`get-stores-by-name/${name}/${category}`);
   }
+
+  //obtener tiendas a partir de su id
+  async getStore(id) {
+    return this.get(`get-store-by-id/${id}`);
+  }
 }
 
 //to do: conexion otros microservicios
