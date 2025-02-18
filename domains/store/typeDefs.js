@@ -12,6 +12,7 @@ export const typeDefs = `#graphql
     created_at: String!
     updated_at: String!
     deleted_at: String
+    store: Store
   }
 
   input RandomBagInput {

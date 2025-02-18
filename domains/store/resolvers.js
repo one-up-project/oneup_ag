@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const resolvers = {
   Query: {
     randomBags: async (_, __, { dataSources }) => {
@@ -8,17 +10,28 @@ export const resolvers = {
           throw new Error("No se encontraron random bags.");
         }
 
-        console.log("Datos recibidos en el resolver:", randomBags); 
+        console.log("Datos recibidos en el resolver:", randomBags);
         return randomBags;
       } catch (error) {
         throw new Error(`Error al obtener random bags: ${error.message}`);
       }
     },
   },
+
+  RandomBag: {
+    store: async (parent) => {
+      // peticion search_ms para obtener la información de la tienda por id
+      const response = await axios.get(
+        `http://localhost:8800/search-ms/stores/get-store-by-id/${parent.store_id}`
+      );
+      return response.data;
+    },
+  },
+
   Mutation: {
     createRandomBag: async (_, { input }, { dataSources }) => {
       try {
-        console.log("Ejecutando resolver createRandomBag con input:", input); 
+        console.log("Ejecutando resolver createRandomBag con input:", input);
         const result = await dataSources.storeAPI.createRandomBag(input);
 
         if (!result) {
@@ -33,13 +46,15 @@ export const resolvers = {
     },
     deleteRandomBag: async (_, { random_bag_id }, { dataSources }) => {
       try {
-        const result = await dataSources.storeAPI.deleteRandomBag(random_bag_id);
+        const result = await dataSources.storeAPI.deleteRandomBag(
+          random_bag_id
+        );
 
         if (!result) {
           throw new Error("No se pudo eliminar la random bag.");
         }
 
-        console.log("Resultado de deleteRandomBag:", result); 
+        console.log("Resultado de deleteRandomBag:", result);
         return result;
       } catch (error) {
         throw new Error(`Error al eliminar la random bag: ${error.message}`);
