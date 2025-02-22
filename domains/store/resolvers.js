@@ -97,5 +97,26 @@ export const resolvers = {
         throw new Error(`Error al eliminar la random bag: ${error.message}`);
       }
     },
+    reserveRandomBag: async (
+      _,
+      { user_id, random_bag_id },
+      { dataSources }
+    ) => {
+      try {
+        const result = await dataSources.storeAPI.reserveRandomBag(
+          user_id,
+          random_bag_id
+        );
+
+        if (!result) {
+          throw new Error("No se pudo reservar la random bag.");
+        }
+
+        console.log("Resultado de reserveRandomBag:", result);
+        return result;
+      } catch (error) {
+        throw new Error(`Error al reservar la random bag: ${error.message}`);
+      }
+    },
   },
 };

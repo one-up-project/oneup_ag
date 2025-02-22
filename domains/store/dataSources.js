@@ -6,12 +6,11 @@ export class StoreAPI extends RESTDataSource {
     this.baseURL = "http://localhost:5000/api/store/"; // URL del backend
   }
 
-  // GET 
+  // GET
   async getRandomBags() {
     try {
-
-      const data = await this.get("randomBags"); 
-      console.log("Datos obtenidos en getRandomBags:", data); 
+      const data = await this.get("randomBags");
+      console.log("Datos obtenidos en getRandomBags:", data);
       return data;
     } catch (error) {
       throw new Error("No se pudieron obtener las random bags");
@@ -22,12 +21,21 @@ export class StoreAPI extends RESTDataSource {
   async deleteRandomBag(random_bag_id) {
     return this.delete(`randomBags/${random_bag_id}`);
   }
-  //POST 
+  //POST
   async createRandomBag(input) {
     return this.post("randomBags", {
-      body: input, 
+      body: input,
       headers: {
-        "Content-Type": "application/json", 
+        "Content-Type": "application/json",
+      },
+    });
+  }
+
+  async reserveRandomBag(user_id, random_bag_id) {
+    return this.post("randomBags/reserve", {
+      body: { user_id, random_bag_id },
+      headers: {
+        "Content-Type": "application/json",
       },
     });
   }
