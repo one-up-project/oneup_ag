@@ -18,13 +18,50 @@ export const resolvers = {
     },
   },
 
+  // RandomBag: {
+  //   store: async (parent) => {
+  //     try {
+  //       //log de test
+  //       console.log(`store_id: ${parent.store_id}`);
+
+  //       // peticion search_ms para obtener la información de la tienda por id
+  //       const response = await axios.get(
+  //         `http://localhost:8800/search-ms/stores/get-store-by-id/${parent.store_id}`
+  //       );
+  //       console.log("respuesta search_ms", response);
+  //       if (!response) {
+  //         throw new Error(
+  //           "El campo id_store no se encuentra en la respuesta de la API."
+  //         );
+  //       }
+  //       return response;
+  //     } catch (error) {
+  //       console.error(`Error al obtener la tienda: ${error.message}`);
+  //       throw new Error(`Error al obtener la tienda: ${error.message}`);
+  //     }
+  //   },
+  // },
+
   RandomBag: {
-    store: async (parent) => {
-      // peticion search_ms para obtener la información de la tienda por id
-      const response = await axios.get(
-        `http://localhost:8800/search-ms/stores/get-store-by-id/${parent.store_id}`
-      );
-      return response.data;
+    store: async (parent, _, { dataSources }) => {
+      if (!parent.store_id) return {};
+      try {
+        //log de test
+        console.log(`store_id: ${parent.store_id}`);
+
+        // peticion search_ms para obtener la información de la tienda por id
+        const response = await dataSources.Search_ms.getStore(parent.store_id);
+        console.log("respuesta search_ms", response);
+        if (!response) {
+          throw new Error(
+            "El campo id_store no se encuentra en la respuesta de la API."
+          );
+        }
+        return response;
+      } catch (error) {
+        console.error(`Error al obtener la tienda: ${error.message}`);
+        throw new Error(`Error al obtener la tienda: ${error.message}`);
+      }
     },
   },
 
