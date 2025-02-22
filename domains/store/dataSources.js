@@ -39,6 +39,26 @@ export class StoreAPI extends RESTDataSource {
       },
     });
   }
+
+  async getOrdersByUser(user_id) {
+    try {
+      const data = await this.get(`orders/get-orders-by-user/${user_id}`);
+      console.log("Datos obtenidos en getOrderByUser:", data);
+      return data;
+    } catch (error) {
+      throw new Error("No se pudieron obtener las ordenes");
+    }
+  }
+
+  async getRandomBag(random_bag_id) {
+    try {
+      const data = await this.get(`randomBags/${random_bag_id}`);
+      console.log("Datos obtenidos en getRandomBagById:", data);
+      return data;
+    } catch (error) {
+      throw new Error("No se pudieron obtener la random bag");
+    }
+  }
 }
 
 export default StoreAPI;

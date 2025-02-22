@@ -1,6 +1,14 @@
 //import { gql } from "graphql-tag";
 
 export const typeDefs = `#graphql
+
+type Order{
+  order_id: Int!
+  user_id: Int!
+  random_bag_id: Int!
+  current_status: String!
+  randomBag: RandomBag
+}
   type RandomBag {
     random_bag_id: Int!
     store_id: Int!
@@ -26,6 +34,8 @@ export const typeDefs = `#graphql
 
   type Query {
     randomBags: [RandomBag]
+    getOrdersByUser(user_id: Int!): [Order]
+    getRandomBagById(random_bag_id: Int!): RandomBag
   }
 
   type Mutation {
