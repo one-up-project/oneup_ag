@@ -1,5 +1,3 @@
-import { Search_ms } from "./dataSources.js";
-
 export const resolvers = {
   // getUsers
   // getUser
@@ -13,6 +11,11 @@ export const resolvers = {
     },
     getStoresByName: async (_, { name, category }, { dataSources }) => {
       return dataSources.Search_ms.getStoresByName(name, category);
+    },
+    getStore: async (_, { id }, { dataSources }) => {
+      const response = await dataSources.Search_ms.getStore(id);
+      console.log("response search_ms", response);
+      return response;
     },
   },
 };
