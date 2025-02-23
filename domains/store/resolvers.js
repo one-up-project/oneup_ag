@@ -45,5 +45,20 @@ export const resolvers = {
         throw new Error(`Error al eliminar la random bag: ${error.message}`);
       }
     },
+    updateRandomBag: async (_, { input }, { dataSources }) => {
+      try {
+        console.log("Ejecutando resolver updateRandomBag con input:", input);
+        const result = await dataSources.storeAPI.updateRandomBag(input);
+
+        if (!result) {
+          throw new Error("La actualización de la random bag falló.");
+        }
+
+        console.log("Resultado de updateRandomBag:", result);
+        return result;
+      } catch (error) {
+        throw new Error(`Error al actualizar la random bag: ${error.message}`);
+      }
+    },
   },
 };

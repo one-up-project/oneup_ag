@@ -31,6 +31,17 @@ export class StoreAPI extends RESTDataSource {
       },
     });
   }
+
+  async updateRandomBag(input) {
+    const { random_bag_id, ...rest } = input;
+    const response = await this.put(`randomBags/${random_bag_id}`, {
+      body: rest, // Los datos a actualizar
+      headers: {
+        "Content-Type": "application/json", 
+      },
+    });
+    return response;
+  }
 }
 
 export default StoreAPI;
