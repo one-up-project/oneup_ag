@@ -35,7 +35,9 @@ type Order{
   type Query {
     randomBags: [RandomBag]
     getOrdersByUser(user_id: Int!): [Order]
-    getRandomBagById(random_bag_id: Int!): RandomBag
+    getOrdersByStore(store_id: Int!): [Order]
+
+    # getRandomBagById(random_bag_id: Int!): RandomBag
   }
 
   type Mutation {

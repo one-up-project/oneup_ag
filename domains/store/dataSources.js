@@ -43,7 +43,16 @@ export class StoreAPI extends RESTDataSource {
   async getOrdersByUser(user_id) {
     try {
       const data = await this.get(`orders/get-orders-by-user/${user_id}`);
-      console.log("Datos obtenidos en getOrderByUser:", data);
+      console.log("Datos obtenidos en getOrdersByUser:", data);
+      return data;
+    } catch (error) {
+      throw new Error("No se pudieron obtener las ordenes");
+    }
+  }
+  async getOrdersByStore(store_id) {
+    try {
+      const data = await this.get(`orders/get-orders-by-store/${store_id}`);
+      console.log("Datos obtenidos en getOrdersByStore:", data);
       return data;
     } catch (error) {
       throw new Error("No se pudieron obtener las ordenes");

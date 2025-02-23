@@ -30,13 +30,27 @@ export const resolvers = {
         throw new Error(`Error al obtener las órdenes: ${error.message}`);
       }
     },
-    getRandomBagById: async (_, { random_bag_id }, { dataSources }) => {
-      const response = await dataSources.storeAPI.getRandomBagById(
-        random_bag_id
-      );
-      console.log("response random bag by id", response);
-      return response;
+    getOrdersByStore: async (_, { store_id }, { dataSources }) => {
+      try {
+        const orders = await dataSources.storeAPI.getOrdersByStore(store_id);
+
+        if (!orders || orders.length === 0) {
+          throw new Error("No se encontraron órdenes para la tienda.");
+        }
+
+        console.log("Datos recibidos en el resolver:", orders);
+        return orders;
+      } catch (error) {
+        throw new Error(`Error al obtener las órdenes: ${error.message}`);
+      }
     },
+    // getRandomBagById: async (_, { random_bag_id }, { dataSources }) => {
+    //   const response = await dataSources.storeAPI.getRandomBagById(
+    //     random_bag_id
+    //   );
+    //   console.log("response random bag by id", response);
+    //   return response;
+    // },
   },
 
   // RandomBag: {
