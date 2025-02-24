@@ -23,6 +23,7 @@
     "@apollo/server": "^4.11.3",
     "apollo-datasource-rest": "^3.7.0",
     "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
     "graphql": "^16.10.0",
     "undici": "^7.3.0"
   }
