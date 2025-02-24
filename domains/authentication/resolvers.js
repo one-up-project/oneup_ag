@@ -49,6 +49,21 @@ export const resolvers = {
       }
     },
 
+    updateUser: async (_, { input }, { dataSources }) => {
+      try {
+        console.log("Ejecutando resolver updateUser con input:", input); 
+        const result = await dataSources.Authentication.updateUser(input); // se envía el input al backend con la función createUser
+        // se debe agregar un filtro en caso de que el usuario exista
+        if (!result) {
+          throw new Error("La actualización del usuario falló.");
+        }
+        console.log("Resultado de updateUser:", result);
+        return result;
+      } catch (error) {
+        throw new Error(`Error al actualizar el usuario: ${error.message}`);
+      }
+    },
+
     loginUser: async (_, { input }, { dataSources }) => {
       try {
         console.log("Ejecutando resolver loginUser con input:", input); 
