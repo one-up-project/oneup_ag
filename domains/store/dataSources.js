@@ -1,4 +1,6 @@
 import { RESTDataSource } from "@apollo/datasource-rest";
+import dotenv from "dotenv";
+dotenv.config();
 
 export class StoreAPI extends RESTDataSource {
   constructor() {

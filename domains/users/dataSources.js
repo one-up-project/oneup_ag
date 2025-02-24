@@ -1,4 +1,6 @@
 import { RESTDataSource } from "@apollo/datasource-rest";
+import dotenv from "dotenv";
+dotenv.config();
 
 //conexion con el search_ms
 export class Search_ms extends RESTDataSource {
