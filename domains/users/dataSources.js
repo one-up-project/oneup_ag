@@ -4,7 +4,7 @@ import { RESTDataSource } from "@apollo/datasource-rest";
 export class Search_ms extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = "http://localhost:8800/search-ms/stores/";
+    this.baseURL = `${process.env.URL_SEARCH_MS}/search-ms/stores/`;
   }
 
   //obtener tiendas cercanas a la ubicacion del usuario (2km de rango)

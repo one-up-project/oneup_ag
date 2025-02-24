@@ -10,9 +10,11 @@ const server = new ApolloServer({
   resolvers,
 });
 
+const PORT = process.env.PORT || 4000;
+
 async function startServer() {
   const { url } = await startStandaloneServer(server, {
-    listen: { port: 4000 },
+    listen: { port: PORT },
     context: async () => ({
       dataSources: {
         Search_ms: new Search_ms(),
