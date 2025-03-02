@@ -3,7 +3,7 @@ import { RESTDataSource } from "@apollo/datasource-rest";
 export class StoreAPI extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = "http://localhost:5000/api/store/"; // URL del backend
+    this.baseURL = "https://content-store-471695923027.southamerica-east1.run.app"; // URL del backend
   }
 
   // GET 
