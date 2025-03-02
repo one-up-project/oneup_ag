@@ -46,6 +46,19 @@ export class Authentication extends RESTDataSource {
     }
   }
 
+
+  async updateUser(input) {
+    try {
+      return this.post("/backend/updateUser", {
+        body: input, 
+        headers: { "Content-Type": "application/json" },
+      }); // Pasamos input directamente
+    } catch (error) {
+      console.log("Error en updateUser:", error); 
+      //console.error(error);
+    }
+  }
+
 }
 
 export default Authentication;

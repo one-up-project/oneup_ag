@@ -25,6 +25,17 @@ export const typeDefs = `#graphql
     long: Float
   }
 
+  input UserUpdate { 
+    id: Int!
+    username: String!
+    email: String!
+    password: String!
+    phone: String!
+    rol: String!
+    lat: Float
+    long: Float
+  }
+
   input UserLogin { 
     email: String!
     password: String!
@@ -37,6 +48,7 @@ export const typeDefs = `#graphql
 
   type Mutation {
     createUser(input: UserInput!): User
+    updateUser(input: UserUpdate!): User
     loginUser(input: UserLogin!): User
   }
 
