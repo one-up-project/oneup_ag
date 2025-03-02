@@ -6,8 +6,9 @@ import { Search_ms } from "./domains/users/dataSources.js";
 import { StoreAPI } from "./domains/store/dataSources.js";
 import { Authentication } from "./domains/authentication/dataSources.js";
 
-//server setup
-//schema
+import cors from "cors"; // Importa el paquete cors
+
+// Configura el servidor Apollo
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -15,7 +16,7 @@ const server = new ApolloServer({
 
 async function startServer() {
   const { url } = await startStandaloneServer(server, {
-    listen: { port: 4000 },
+    listen: { port: 8080 },
     context: async () => ({
       dataSources: {
         Search_ms: new Search_ms(),
@@ -23,9 +24,17 @@ async function startServer() {
         Authentication: new Authentication(),
       },
     }),
+    
+    // Configura CORS aquí
+    cors: {
+      origin: "http://localhost:3000", // Permite solicitudes desde este origen
+      methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos
+      allowedHeaders: ["Content-Type", "Authorization"], // Encabezados permitidos
+      credentials: true, // Permite credenciales (cookies, tokens, etc.)
+    },
   });
 
-  console.log("Server started at", url);
+  console.log("El servicio inicio en el puerto: ", url);
 }
 
 startServer();
