@@ -4,7 +4,7 @@ import { RESTDataSource } from "@apollo/datasource-rest";
 export class Authentication extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = "http://localhost:7000/"; // URL del backend
+    this.baseURL = "https://oneup-auth-ms-500667615440.us-central1.run.app"; // URL del backend
   }
 
     // GET 
