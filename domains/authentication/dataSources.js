@@ -4,7 +4,9 @@ import { RESTDataSource } from "@apollo/datasource-rest";
 export class Authentication extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = "http://localhost:7000/"; // URL del backend
+    // this.baseURL = "http://localhost:7000/"; // URL del backend
+    
+     this.baseURL = "https://oneup-auth-ms-500667615440.us-central1.run.app"; // URL del backend
   }
 
     // GET 
@@ -42,6 +44,7 @@ export class Authentication extends RESTDataSource {
       }); // Pasamos input directamente
     } catch (error) {
       console.log("Error en createUser:", error); 
+      console.error(error.message);
       //console.error(error);
     }
   }
