@@ -3,9 +3,10 @@ import { RESTDataSource } from "@apollo/datasource-rest";
 export class StoreAPI extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = "http://localhost:8080/api/store/"; // URL del backend
+    //this.baseURL = "http://localhost:8080/api/store/"; // URL del backend
+    this.baseURL = "https://content-ms-471695923027.us-central1.run.app/api/store/"; // URL del backend
+    
   }
-
   // GET
   async getRandomBags() {
     try {
