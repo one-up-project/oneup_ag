@@ -3,15 +3,15 @@ import { RESTDataSource } from "@apollo/datasource-rest";
 export class StoreAPI extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = "https://content-store-471695923027.southamerica-east1.run.app"; // URL del backend
+    //this.baseURL = "http://localhost:8080/api/store/"; // URL del backend
+    this.baseURL = "https://content-ms-471695923027.us-central1.run.app/api/store/"; // URL del backend
+    
   }
-
-  // GET 
+  // GET
   async getRandomBags() {
     try {
-
-      const data = await this.get("randomBags"); 
-      console.log("Datos obtenidos en getRandomBags:", data); 
+      const data = await this.get("randomBags");
+      console.log("Datos obtenidos en getRandomBags:", data);
       return data;
     } catch (error) {
       throw new Error("No se pudieron obtener las random bags");
@@ -22,12 +22,12 @@ export class StoreAPI extends RESTDataSource {
   async deleteRandomBag(random_bag_id) {
     return this.delete(`randomBags/${random_bag_id}`);
   }
-  //POST 
+  //POST
   async createRandomBag(input) {
     return this.post("randomBags", {
-      body: input, 
+      body: input,
       headers: {
-        "Content-Type": "application/json", 
+        "Content-Type": "application/json",
       },
     });
   }
@@ -41,6 +41,44 @@ export class StoreAPI extends RESTDataSource {
       },
     });
     return response;
+  }
+
+  async reserveRandomBag(user_id, random_bag_id) {
+    return this.post("randomBags/reserve", {
+      body: { user_id, random_bag_id },
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
+
+  async getOrdersByUser(user_id) {
+    try {
+      const data = await this.get(`orders/get-orders-by-user/${user_id}`);
+      console.log("Datos obtenidos en getOrdersByUser:", data);
+      return data;
+    } catch (error) {
+      throw new Error("No se pudieron obtener las ordenes");
+    }
+  }
+  async getOrdersByStore(store_id) {
+    try {
+      const data = await this.get(`orders/get-orders-by-store/${store_id}`);
+      console.log("Datos obtenidos en getOrdersByStore:", data);
+      return data;
+    } catch (error) {
+      throw new Error("No se pudieron obtener las ordenes");
+    }
+  }
+
+  async getRandomBag(random_bag_id) {
+    try {
+      const data = await this.get(`randomBags/${random_bag_id}`);
+      console.log("Datos obtenidos en getRandomBagById:", data);
+      return data;
+    } catch (error) {
+      throw new Error("No se pudieron obtener la random bag");
+    }
   }
 }
 
